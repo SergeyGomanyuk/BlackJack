@@ -19,11 +19,11 @@ public class Card {
         this.index = index;
     }
 
-//    public Card(Rank rank, Suit suit) {
-//        this.rank = rank;
-//        this.suit = suit;
-//        this.index = suit.ordinal() * Rank.values().length + rank.ordinal();
-//    }
+    public Card(Rank rank, Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+        this.index = suit.ordinal() * Rank.values().length + rank.ordinal();
+    }
 
     public Rank getRank() {
         return rank;

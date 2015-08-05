@@ -17,7 +17,7 @@ public class Table {
     private final int minStake;
     private final int maxStake;
 
-    private Shoe shoe;
+    private Shoe shoe = new Shoe();
     private Box dealerBox;
     private Map<Player, List<Box>> playerBoxes = new LinkedHashMap<Player, List<Box>>();
 
@@ -124,6 +124,10 @@ public class Table {
         for(Player player : players) {
             playerBoxes.put(player, new ArrayList<Box>());
         }
+    }
+
+    public Shoe getShoe() {
+        return shoe;
     }
 
     public Player[] getPlayers() {

@@ -3,7 +3,7 @@ package ru.sergg.blackjack;
 /**
  * Created by sergeygomanyuk on 06.04.15.
  */
-public class Player {
+public abstract class Player {
     private int coins;
 
     public int getCoins() {
@@ -18,4 +18,6 @@ public class Player {
         // TODO implement
         return new int[0];
     }
+
+    public abstract boolean askForInsurance();
 }

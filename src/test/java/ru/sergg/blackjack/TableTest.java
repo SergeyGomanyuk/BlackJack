@@ -1,8 +1,41 @@
 package ru.sergg.blackjack;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import  org.junit.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class TableTest {
+
+    public class PlayerMock extends Player {
+
+        public PlayerMock() {
+            setCoins(2);
+        }
+
+        @Override
+        public int[] getStakes() {
+            return new int[] { 2 };
+        }
+
+        @Override
+        public boolean askForInsurance() {
+            return true;
+        }
+    }
+
+    private Table table = new Table(1, 100);
+
+    @Before
+    public void setUp() throws Exception {
+        System.out.println("before");
+        table.setPlayers(new Player[] {new PlayerMock()});
+    }
+
 
     // check if shoe needs to be refilled and shuffled - 4-8x52 cards, (90-25)% cards are left
 
@@ -46,4 +79,23 @@ public class TableTest {
     // condition - behaviour:
     // player has less coins than min allowed stake - player shall be removed
     // player
+
+    @Test
+    public void test1() {
+        List<Card> cards = new ArrayList<Card>();
+        cards.add(new Card(Card.Rank.ace, Card.Suit.hearts));
+        cards.add(new Card(Card.Rank.ace, Card.Suit.diamonds));
+        cards.add(new Card(Card.Rank.lady, Card.Suit.spades));
+        cards.add(new Card(Card.Rank.ten, Card.Suit.hearts));
+        table.getShoe().setCards(cards);
+
+        table.turn();
+
+        Assert.assertEquals("Player wins 1:1 (dealer BJ, player BJ, player takes insurance)", 4, table.getPlayers()[0].getCoins());
+    }
+
+    @Test
+    public void test2() {
+    }
+
 }
